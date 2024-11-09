@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block page_content %}
+    <div class="container-fluid">
+    <div class="row" style="height: 100vh">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+      <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel" >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="sidebarMenuLabel">信安综合网站</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+
+        <div class="flex-0 p-3" style="width: 280px;">
+            <ul class="list-unstyled ps-0" style="margin-top: 10px">
+
+                <li class="mb-1 mysidebar" >
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 mybutton" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">个人信息
+                    </button>
+                            <div class="collapse" id="home-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="/userpage/" class="link-body-emphasis d-inline-flex text-decoration-none rounded" >个人信息</a></li>
+          </ul>
+        </div>
+                </li>
+                <br/>
+                <li class="mb-1 mysidebar">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 mybutton" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          收藏夹
+        </button>
+                                                <div class="collapse" id="dashboard-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{% url 'user_page:fav_post' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded" >收藏的帖子</a></li>
+          </ul>
+        </div>
+      </li>
+                <br/>
+                <li class="mb-1 mysidebar">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mybutton" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          我的发布
+        </button>
+        <div class="collapse" id="orders-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{% url 'user_page:user_post' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded" >发布的帖子</a></li>
+            <li><a href="{% url 'user_page:user_comment' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded" >发布的评论</a></li>
+            <li><a href="{% url 'user_page:user_reply' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded" >发布的回复</a></li>
+          </ul>
+        </div>
+      </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="border-bottom: 1px solid lightgrey">
+<br/>
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                <h3>我收藏的帖子</h3>
+            </div>
+            <div class="card-body">
+                {% if posts %}
+                    <ul class="list-group">
+                        {% for post in posts %}
+                            <a href="{% url 'post_detail' post.id %}" class="list-group-item list-group-item-action d-flex justify-content-between">
+                                <span>{{ post.title }}</span>
+                                <small class="text-muted">创建于 {{ post.created_at|date:"Y-m-d H:i" }}</small>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>你还没有收藏任何帖子。</p>
+                {% endif %}
+            </div>
+        </div>
+
+
+    </main>
+    </div>
+    </div>
+    <div class="card shadow">
+      <div class="card-footer bg-body-tertiary">
+          <h1 class="text-center"><code>THAT'S THE END</code></h1>
+      </div>
+    </div>
+{% endblock %}
+
