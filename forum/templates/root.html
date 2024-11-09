@@ -31,7 +31,7 @@
           text-decoration: none;
         }
         a:hover {
-          color: rgb(7, 30, 245);
+          color: rgb(9, 88, 235);
         }
       }
 
@@ -120,9 +120,9 @@
     {% include "theme_toggler.html" %}
 
     <!-- 主体内容区域 -->
-    <div class="main-container">
+    <div class="main-container bg-body-tertiary">
       <!-- 左侧竖栏 -->
-      <div class="left-sidebar">
+      <div class="left-sidebar bg-body-tertiary">
         <h4>论坛公告</h4>
           <ul>
             <li><a href="#">2024年版论坛规则更新</a></li>
@@ -144,13 +144,13 @@
       </div>
 
       <!-- 内容区域 -->
-      <div class="content-area">
+      <div class="content-area bg-body-tertiary">
         {% block content %}
         {% endblock %}
       </div>
 
       <!-- 右侧竖栏 -->
-      <div class="right-sidebar"> 
+      <div class="right-sidebar bg-body-tertiary"> 
         <h3><code>参与投票</code></h3>
         <form>
           <div>
