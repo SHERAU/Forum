@@ -507,7 +507,7 @@ def reset_pw(request):
 @login_required(login_url='/login/')
 def log_out(request):
     logout(request)
-    return redirect('home/')
+    return redirect('/home/')
 
 def img_code(request):
     img,code_string = check_code()
