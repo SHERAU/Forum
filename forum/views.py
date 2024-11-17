@@ -174,6 +174,8 @@ def edit_post(request, post_id):
         content = content.strip() if content else ''
 
         with transaction.atomic():
+            # 代码中所有与数据库交互的SQL查询都使用了参数化查询，如%s，
+            # 将变量绑定到查询参数，而不是直接插入SQL字符串中，可以有效防止SQL注入攻击。
             with connection.cursor() as cursor:
                 cursor.execute("""
                     UPDATE forum_post 
